@@ -1,0 +1,25 @@
+form {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#user-name {
+    width: 300px;
+    margin: 2px;
+    padding: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 14px;
+    font-size: 16px;
+    color: #333;
+}
+
+input:focus {
+    outline: none;
+}
+
+.back-button {
+    background-color: #FFCE00;
+}
