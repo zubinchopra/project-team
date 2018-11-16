@@ -5,15 +5,33 @@ import Partner from './pages/Partner/Partner';
 import AllSet from './pages/AllSet/AllSet';
 
 class App extends Component {
+
+	state = {
+		username: '',
+		partnername: ''
+	}
+
 	render() {
 		return (
 			<Router>
-				<CurrentUser path='/'/>
-				<Partner path='/partner' />
+				<CurrentUser username={this.state.username} handleOnChange={this.handleOnChange} path='/'/>
+				<Partner username={this.state.username} partnername={this.state.partnername} handlePartnerName={this.handlePartnerName} path='/partner' />
 				<AllSet path='/done' />
 			</Router>
     	);
-  	}
+	}
+	  
+	handleOnChange = (e) => {
+        this.setState({
+            username: e.target.value
+        });
+	}
+	
+	handlePartnerName = (e) => {
+		this.setState({
+			partnername: e.target.value
+		});
+	}
 }
 
 export default App;

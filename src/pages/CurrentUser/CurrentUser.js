@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import './CurrentUser.css'
 import { Link } from '@reach/router';
+import Names from '../../names.json';
 
 class CurrentUser extends Component {
-
-    state = {
-        username: ''
-    }
 
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <input id='user-name' type='text' placeholder='Enter your name' value={this.state.username} onChange={e => {this.setState({username: e.target.value})}} />
-                <Link to='/partner'><button className='next-button' type='submit'>That's me!</button></Link>
+                <input id='user-name' type='text' placeholder='Enter your name' value={this.props.username} onChange={this.props.handleOnChange} name="name" list="name-list" />
+                <datalist id="name-list">
+                    {Names.map(name => {
+                        return <option value={name} key={name} />
+                    })}
+                </datalist>
+                <Link to='/partner'><button className='next-button' type='submit' disabled={!Names.includes(this.props.username)}>That's me!</button></Link>
             </form>
         );
     }

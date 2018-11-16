@@ -23,3 +23,8 @@ input:focus {
 .back-button {
     background-color: #FFCE00;
 }
+
+#user-greeting {
+    margin-bottom: 42px;
+    font-size: 42px;
+}
