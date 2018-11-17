@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './CurrentUser.css'
-import { Link, redirectTo } from '@reach/router';
+import { Link } from '@reach/router';
 import Names from '../../names.json';
 
 class CurrentUser extends Component {
