@@ -2,17 +2,26 @@ import React, { Component } from 'react';
 import { Link } from '@reach/router';
 import './Partner.css';
 import Names from '../../names.json';
+import firebase from 'firebase';
 
 class Partner extends Component {
+
+    state = {
+        user: {}
+    }
 
     componentDidMount() {
         if(!this.props.username) {
             window.location.href='/';
         }
+        let ref = firebase.database().ref();
+        ref.orderByChild('name').equalTo(this.props.username).on('value', snapshot => {
+            this.setState({user: snapshot.val()[Object.keys(snapshot.val())]});
+        });
     }
 
     render() {
-        console.log(this.props.partnername);
+        console.log(this.state.user);
         return (
             <form onSubmit={this.handleSubmit}>
                 <span id="user-greeting">Hey {this.props.username.split(" ")[0]}!</span>

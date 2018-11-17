@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './CurrentUser.css'
-import { Link } from '@reach/router';
+import { Link, redirectTo } from '@reach/router';
 import Names from '../../names.json';
 
 class CurrentUser extends Component {
@@ -8,6 +8,7 @@ class CurrentUser extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
+                <span id="user-greeting">Group Up!</span>
                 <input id='user-name' type='text' placeholder='Enter your name' value={this.props.username} onChange={this.props.handleOnChange} name="name" list="name-list" />
                 <datalist id="name-list">
                     {Names.map(name => {
