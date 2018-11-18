@@ -8,15 +8,26 @@ class App extends Component {
 
 	state = {
 		username: '',
-		partnername: ''
+		partnername: '',
 	}
 
 	render() {
 		return (
 			<Router>
-				<CurrentUser username={this.state.username} handleOnChange={this.handleOnChange} path='/'/>
-				<Partner username={this.state.username} partnername={this.state.partnername} handlePartnerName={this.handlePartnerName} path='/partner' />
-				<AllSet path='/done' />
+				<CurrentUser 
+					username={this.state.username} 
+					handleOnChange={this.handleOnChange}
+					path='/' 
+				/>
+				<Partner 
+					username={this.state.username} 
+					partnername={this.state.partnername} 
+					handlePartnerName={this.handlePartnerName} 
+					path='/partner' 
+				/>
+				<AllSet 
+					path='/done' 
+				/>
 			</Router>
     	);
 	}
