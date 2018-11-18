@@ -30,6 +30,9 @@ class Partner extends Component {
         ref.orderByChild('name').equalTo(this.props.username).on('value', snapshot => {
             let userIndex = Object.keys(snapshot.val());
             let student = snapshot.val()[userIndex];
+            if(student.jacobDecides) {
+                window.location.href = '/done';
+            }
             this.setState({userIndex: userIndex});
             if(student.confirmed === true || student.confirmed === false) {
                 this.setState({

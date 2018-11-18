@@ -37,8 +37,8 @@ class CurrentUser extends Component {
                     </Link>
                     <button className='back-button button-padding user-button' onClick={this.handleJacobSubmit} disabled={!Names.includes(this.props.username)}>Let Jacob decide</button>
                 </div>
-                <div class='current-user-content'>
-                    {this.state.jacobDecides ? 'You asked to Jacob to choose your partner' : <div />}
+                <div className='current-user-content'>
+                    {this.state.jacobDecides ? 'You already asked Jacob to choose your partner' : <div />}
                     {this.state.partnerExists ? 'You already picked a team member' : <div />}
                 </div>
             </form>
