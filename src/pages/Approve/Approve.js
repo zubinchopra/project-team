@@ -41,7 +41,7 @@ class Approve extends Component {
                 <div>
                     {this.state.student.chosePartner === "" ?
                     <div>
-                        <div className='approve-content'>Your potential partner is {this.state.student.picked_by}</div>
+                        <div className='approve-content'>Your were picked by {this.state.student.picked_by}</div>
                         <div className='approve-content'>Do you wish to proceed?</div>
                         <button className='next-button button-padding' onClick={this.handleProceed}>Proceed</button>
                         <button className='back-button button-padding' onClick={this.handleDecline}>Decline</button>
