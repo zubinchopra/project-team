@@ -36,3 +36,11 @@ button, .next-button {
 #user-error-message {
     margin-top: 36px;
 }
+
+.current-user-content {
+    margin-top:36px;
+}
+
+.user-button {
+    width: 150px;
+}

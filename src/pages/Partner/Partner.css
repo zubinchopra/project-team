@@ -28,3 +28,7 @@ input:focus {
     margin-bottom: 42px;
     font-size: 42px;
 }
+
+.already-picked {
+    margin-top: 36px;
+}

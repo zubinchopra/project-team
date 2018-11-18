@@ -10,7 +10,9 @@ class Partner extends Component {
     state = {
         students: [],
         userIndex: -1,
-        confirmed: null
+        confirmed: null,
+        alreadyPicked: false,
+        partnername: ''
     }
 
     componentDidMount() {
@@ -48,12 +50,14 @@ class Partner extends Component {
                     {this.state.students.map((student, index) => {
                         if(student.name === this.props.username || student.confirmed !== '' ) {
                             return <option key={'exclude' + index} />
+                        } else {
+                            return <option value={student.name} key={student.uwnetid} />
                         }
-                        return <option value={student.name} key={student.uwnetid} />
                     })}
                 </datalist>
                 <button className='next-button' type='submit' disabled={!Names.includes(this.props.partnername) && this.props.partnername !== this.props.username} onClick={this.handleSubmit}>Next</button>
                 <Link to='/'><button className='back-button'>Back</button></Link>
+                {this.state.alreadyPicked ? <div className='already-picked'>{this.state.partnername} was already picked</div> : <div />}
             </form>
 
             :
@@ -68,22 +72,38 @@ class Partner extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        let ref = firebase.database().ref('/' + this.state.userIndex);
-        ref.update({
-            chosePartner: this.props.partnername,
-            confirmed: false
-        }).then(() => {
-            firebase.database().ref().orderByChild('name').equalTo(this.props.partnername).on('value', snapshot => {
-                let partnerIndex = Object.keys(snapshot.val());
-                let partnerRef = firebase.database().ref('/' + partnerIndex);
-                partnerRef.update({
-                    confirmed: false,
-                    picked_by: this.props.username
-                });
+
+        firebase.database().ref().orderByChild('name').equalTo(this.props.partnername).on('value', snapshot => {
+            let partnerIndex = Object.keys(snapshot.val());
+            let partnerRef = firebase.database().ref('/' + partnerIndex);
+            partnerRef.on('value', snap => {
+                if(snap.val().confirmed === '') {
+                    let ref = firebase.database().ref('/' + this.state.userIndex);
+                    ref.update({
+                        chosePartner: this.props.partnername,
+                        confirmed: false
+                    }).then(() => {
+                        firebase.database().ref().orderByChild('name').equalTo(this.props.partnername).on('value', snapshot => {
+                            let partnerIndex = Object.keys(snapshot.val());
+                            let partnerRef = firebase.database().ref('/' + partnerIndex);
+                            partnerRef.update({
+                                confirmed: false,
+                                picked_by: this.props.username
+                            });
+                        });
+                    }).then(() => {
+                        this.setState({alreadyPicked: false});
+                        window.location.href = '/done';
+                    });
+                } else {
+                    this.setState({
+                        alreadyPicked: true,
+                        partnername: this.props.partnername
+                    });
+                }
             });
-        }).then(() => {
-            window.location.href = '/done';
         });
+
     }
 
 }
