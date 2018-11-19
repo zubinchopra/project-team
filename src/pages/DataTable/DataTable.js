@@ -38,7 +38,6 @@ class DataTable extends Component {
                         <th>Partner</th>
                     </tr>
                     {this.state.students.map((student) => {
-                            console.log(student);
                             return ( 
                                 <TableRowItem key={student.uwnetid} name={student.name} jacobpick={student.jacobDecides} partner={student.chosePartner} pickedby={student.picked_by} />
                             ); 
