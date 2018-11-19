@@ -3,6 +3,7 @@ import { Router } from '@reach/router';
 import CurrentUser from './pages/CurrentUser/CurrentUser';
 import Partner from './pages/Partner/Partner';
 import AllSet from './pages/AllSet/AllSet';
+import DataTable from './pages/DataTable/DataTable';
 
 class App extends Component {
 
@@ -27,6 +28,9 @@ class App extends Component {
 				/>
 				<AllSet 
 					path='/done' 
+				/>
+				<DataTable
+					path='/table' 
 				/>
 			</Router>
     	);
