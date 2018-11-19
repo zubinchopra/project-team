@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './DataTable.css';
-import { Link } from '@reach/router';
-import Names from '../../names.json';
 import firebase from 'firebase';
 
 class TableRowItem extends Component {
@@ -10,7 +8,7 @@ class TableRowItem extends Component {
             <tr>
                 <td>{this.props.name}</td>
                 <td>{this.props.jacobpick ? "True" : ""}</td>
-                <td>{this.props.partner != "" ? this.props.partner : this.props.pickedby}</td>
+                <td>{this.props.partner !== "" ? this.props.partner : this.props.pickedby}</td>
             </tr>
     );}
 }
