@@ -1,5 +1,5 @@
 # Project Team
-This is an open source project to develop a team formation tool for the client side web development (INFO 340) course taught at the University of Washington, Seattle.
+This is an open source project that serves as a team formation tool for the client side web development (INFO 340) course taught at the University of Washington, Seattle.
 
 ### Technologies Used
 This project utilizes the React framework for front-end and uses Firebase for realtime database services. 
